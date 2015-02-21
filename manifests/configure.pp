@@ -1,11 +1,21 @@
 class atheme::configure {
 
-  file { "${::atheme::install_dir}/etc/atheme.conf":
-    ensure  => file,
-    owner   => $::atheme::user,
-    group   => $::atheme::group,
-    mode    => '0644',
+  concat { "${::atheme::install_dir}/etc/atheme.conf":
+    owner   => $user,
+    group   => $group,
+    mode    => '0660',
+    warn    => true,
+  }
+
+  concat::fragment { 'atheme_main':
+    target  => "${::atheme::install_dir}/etc/atheme.conf",
+    order   => '01',
     content => template("${module_name}/atheme.conf.erb"),
+  }
+  concat::fragment { 'atheme_main2':
+    target  => "${::atheme::install_dir}/etc/atheme.conf",
+    order   => '10',
+    content => template("${module_name}/atheme2.conf.erb"),
   }
 
 }

@@ -1,0 +1,106 @@
+/******************************************************************************
+ * LOGGING SECTION.                                                           *
+ ******************************************************************************/
+
+logfile "var/account.log" { register; set; };
+logfile "var/commands.log" { commands; };
+logfile "var/audit.log" { denycmd; };
+logfile "#services" { error; info; admin; request; register; denycmd; };
+logfile "!snotices" { error; info; request; denycmd; };
+
+/******************************************************************************
+ * GENERAL PARAMETERS CONFIGURATION SECTION.                                  *
+ ******************************************************************************/
+
+general {
+	join_chans;
+	leave_chans;
+	uflags                = { hidemail; };
+	cflags                = { verbose; guard; };
+	flood_msgs            = 7;
+	flood_time            = 10;
+	ratelimit_uses        = 5;
+	ratelimit_period      = 60;
+	kline_time            = 7;
+	clone_time            = 0;
+	commit_interval       = 5;
+	default_clone_allowed = 5;
+	default_clone_warn    = 4;
+	uplink_sendq_limit    = 1048576;
+	language              = "en";
+	immune_level          = immune;
+	show_entity_id;
+	exempts {
+	};
+	clone_identified_increase_limit;
+};
+
+/******************************************************************************
+ * OPERATOR AND PRIVILEGES CONFIGURATION SECTION.                             *
+ ******************************************************************************/
+
+operclass "user" { };
+
+operclass "ircop" {
+	privs {
+		special:ircop;
+	};
+
+	privs {
+		user:auspex;
+		user:admin;
+		user:sendpass;
+		user:vhost;
+		user:mark;
+	};
+
+	privs {
+		chan:auspex;
+		chan:admin;
+		chan:cmodes;
+		chan:joinstaffonly;
+	};
+
+	privs {
+		general:auspex;
+		general:helper;
+		general:viewprivs;
+		general:flood;
+	};
+
+	privs {
+		operserv:omode;
+		operserv:akill;
+		operserv:jupe;
+		operserv:global;
+	};
+
+	privs {
+		group:auspex;
+		group:admin;
+	};
+};
+
+operclass "sra" {
+	extends "ircop";
+
+	privs {
+		user:hold;
+		user:regnolimit;
+	};
+
+	privs {
+		general:metadata;
+		general:admin;
+	};
+
+	privs {
+		#operserv:massakill;
+		#operserv:akill-anymask;
+		operserv:noop;
+		operserv:grant;
+		#operserv:override;
+	};
+
+	needoper;
+};

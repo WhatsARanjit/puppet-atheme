@@ -1,11 +1,13 @@
 class atheme (
   $adminemail       = $atheme::params::adminemail,
   $adminname        = $atheme::params::adminname,
+  $chanserv         = false,
   $desc             = $atheme::params::desc,
   $group            = $atheme::params::group,
   $install_dir      = $atheme::params::install_dir,
   $mta              = $atheme::params::mta,
   $netname          = $atheme::params::netname,
+  $nickserv         = false,
   $numeric          = $atheme::params::numeric,
   $protocol         = $atheme::params::protocol,
   $recontime        = $atheme::params::recontime,
@@ -30,7 +32,14 @@ class atheme (
 
   include ::atheme::install
   include ::atheme::configure
+  include ::atheme::service
 
-  Class['::atheme::install'] -> Class['::atheme::configure']
+  Class['::atheme::install'] -> Class['::atheme::configure'] -> Class['::atheme::service']
 
+  if $nickserv {
+    include ::atheme::nickserv
+  }
+  if $chanserv {
+    include ::atheme::chanserv
+  }
 }

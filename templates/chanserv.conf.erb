@@ -1,0 +1,93 @@
+loadmodule "modules/chanserv/main";
+loadmodule "modules/chanserv/access";
+loadmodule "modules/chanserv/akick";
+loadmodule "modules/chanserv/ban";
+#loadmodule "modules/chanserv/unban_self";
+loadmodule "modules/chanserv/clone";
+loadmodule "modules/chanserv/close";
+loadmodule "modules/chanserv/clear";
+loadmodule "modules/chanserv/clear_akicks";
+loadmodule "modules/chanserv/clear_bans";
+loadmodule "modules/chanserv/clear_flags";
+loadmodule "modules/chanserv/clear_users";
+loadmodule "modules/chanserv/count";
+loadmodule "modules/chanserv/drop";
+#loadmodule "modules/chanserv/fflags";
+loadmodule "modules/chanserv/flags";
+loadmodule "modules/chanserv/ftransfer";
+loadmodule "modules/chanserv/getkey";
+#loadmodule "modules/chanserv/halfop";
+loadmodule "modules/chanserv/help";
+loadmodule "modules/chanserv/hold";
+loadmodule "modules/chanserv/info";
+loadmodule "modules/chanserv/invite";
+loadmodule "modules/chanserv/kick";
+loadmodule "modules/chanserv/list";
+loadmodule "modules/chanserv/mark";
+#loadmodule "modules/chanserv/moderate";
+loadmodule "modules/chanserv/op";
+#loadmodule "modules/chanserv/owner";
+#loadmodule "modules/chanserv/protect";
+#loadmodule "modules/chanserv/quiet";
+loadmodule "modules/chanserv/recover";
+loadmodule "modules/chanserv/register";
+loadmodule "modules/chanserv/set_core";
+loadmodule "modules/chanserv/set_email";
+loadmodule "modules/chanserv/set_entrymsg";
+loadmodule "modules/chanserv/set_fantasy";
+loadmodule "modules/chanserv/set_founder";
+#loadmodule "modules/chanserv/set_gameserv";
+loadmodule "modules/chanserv/set_guard";
+loadmodule "modules/chanserv/set_keeptopic";
+#loadmodule "modules/chanserv/set_limitflags";
+loadmodule "modules/chanserv/set_mlock";
+loadmodule "modules/chanserv/set_prefix";
+#loadmodule "modules/chanserv/set_private";
+loadmodule "modules/chanserv/set_property";
+#loadmodule "modules/chanserv/set_pubacl";
+loadmodule "modules/chanserv/set_restricted";
+loadmodule "modules/chanserv/set_secure";
+loadmodule "modules/chanserv/set_topiclock";
+loadmodule "modules/chanserv/set_url";
+loadmodule "modules/chanserv/set_verbose";
+loadmodule "modules/chanserv/status";
+loadmodule "modules/chanserv/sync";
+#loadmodule "modules/chanserv/successor_acl";
+loadmodule "modules/chanserv/taxonomy";
+loadmodule "modules/chanserv/template";
+loadmodule "modules/chanserv/topic";
+loadmodule "modules/chanserv/voice";
+loadmodule "modules/chanserv/why";
+#loadmodule "modules/chanserv/xop";
+loadmodule "modules/chanserv/antiflood";
+
+chanserv {
+	nick = "ChanServ";
+	user = "ChanServ";
+	host = "<%= scope.lookupvar('atheme::server_name') %>";
+	real = "Channel Services";
+	aliases {
+	};
+	access {
+	};
+	maxchans = 5;
+	fantasy;
+	templates {
+		vop = "+AV";
+		hop = "+AHehitrv";
+		aop = "+AOehiortv";
+		sop = "+AOaefhiorstv";
+
+		founder = "+AFORaefhiorstv";
+
+		/* some examples (which are commented out...) */
+		#member = "+Ai";
+		#op = "+AOiortv";
+	};
+	trigger = "!";
+	expire = 30;
+	maxchanacs = 0;
+	maxfounders = 4;
+	antiflood_enforce_method = quiet;
+};
+
