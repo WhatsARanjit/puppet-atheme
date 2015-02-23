@@ -24,5 +24,9 @@ class atheme::params {
   $send_password    = false
   $receive_password = false
   $password         = false
+  # HTTPD defaults
+  $httpd_host = '0.0.0.0'
+  $httpd_root = '/var/www/html'
+  $httpd_port = 8080
 
 }

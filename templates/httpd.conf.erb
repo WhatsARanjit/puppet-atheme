@@ -1,0 +1,9 @@
+loadmodule "modules/misc/httpd";
+loadmodule "modules/transport/xmlrpc";
+
+httpd {
+	host     = "<%= @httpd_host %>";
+	www_root = "<%= @httpd_root %>";
+	port     = <%= @httpd_port %>;
+};
+
