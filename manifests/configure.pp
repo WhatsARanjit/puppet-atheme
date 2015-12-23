@@ -1,5 +1,7 @@
 class atheme::configure {
 
+  $protocol = $atheme::protocol
+
   concat { "${::atheme::install_dir}/etc/atheme.conf":
     owner   => $user,
     group   => $group,
