@@ -1,4 +1,33 @@
-class atheme::configure {
+class atheme::configure (
+  $adminemail,
+  $adminname,
+  $chanserv,
+  $desc,
+  $group,
+  $host,
+  $httpd,
+  $httpd_host,
+  $httpd_port,
+  $httpd_root,
+  $install_dir,
+  $mta,
+  $netname,
+  $nickserv,
+  $numeric,
+  $password,
+  $port,
+  $protocol,
+  $receive_password,
+  $recontime,
+  $registeremail,
+  $send_password,
+  $server_name,
+  $tmp_dir,
+  $uplink,
+  $user,
+  $version,
+  $vhost,
+) {
 
   $protocol = $atheme::protocol
 
